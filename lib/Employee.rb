@@ -30,8 +30,10 @@ class Employee
     end
 
     def tax_bracket
-        self.class.all.select do |employee|
-            employee.salary >= self.salary - 1_000 && employee.salary <= self.salary + 1_000
-        end
+        bracket =   self.class.all.select do |employee|
+                        employee.salary >= self.salary - 1_000 && employee.salary <= self.salary + 1_000
+                    end
+        bracket.delete(self)
+        bracket
     end
 end
